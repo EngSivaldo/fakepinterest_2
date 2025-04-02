@@ -1,9 +1,6 @@
-#Rotas(links)
-from flask import render_template, url_for
-#import o app se nao funciona(do __init__.py)
+from flask import render_template, url_for, flash, redirect
 from fakepinterest import app
-#restringe acesso a pagina
-from flask_login import login_required
+from fakepinterest.forms import FormLogin, FormCriarConta
 
 
 
@@ -22,3 +19,19 @@ def perfil(usuario):
 
 
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = FormLogin()
+    if form.validate_on_submit():
+        flash(f'Login solicitado para {form.email.data}', 'success')
+        return redirect(url_for('home'))
+    return render_template('login.html', form=form)
+
+@app.route('/criar_conta', methods=['GET', 'POST'])
+def criar_conta():
+    form = FormCriarConta()
+    if form.validate_on_submit():
+        flash(f'Conta criada para {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+    return render_template('criar_conta.html', form=form)
