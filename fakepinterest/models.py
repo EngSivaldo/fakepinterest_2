@@ -1,13 +1,7 @@
-from fakepinterest import database, login_manager
-from datetime import datetime
+from fakepinterest import database
 from flask_login import UserMixin
+from datetime import datetime
 
-
-@login_manager.user_loader
-def load_usuario(id_usuario):
-  return Usuario.query.get(int(id_usuario))
-
-# Tabelas--------------------
 class Usuario(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)
     username = database.Column(database.String(80), nullable=False)
