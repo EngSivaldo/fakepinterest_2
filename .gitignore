@@ -1,0 +1,15 @@
+# Ignorar o diretório do ambiente virtual
+venv/
+
+# Ignorar arquivos de configuração do editor
+.vscode/
+.idea/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de banco de dados SQLite
+*.db
+
+# Ignorar arquivos temporários
+*.tmp
