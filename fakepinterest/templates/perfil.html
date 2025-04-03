@@ -1,17 +1,44 @@
-{% extends "homepage.html" %} {% block titulo %}Perfil | {{ usuario }}{%
-endblock %} {% block body %}
+{% extends "homepage.html" %}
+<!-- Extende o template base -->
+
+{% block titulo %}Perfil | {{ usuario.username }}{% endblock %}
+<!-- Título da página -->
+
+{% block body %}
+<!-- Início do conteúdo principal -->
 
 <h1>Perfil de {{ usuario.username }}</h1>
+<!-- Título do perfil -->
 
-<a href="{{ url_for('logout') }}">HOME</a>
+{% if form %}
+<!-- Verifica se o formulário está presente -->
+<form method="POST" enctype="multipart/form-data">
+  <!-- Formulário de upload -->
+  {{ form.csrf_token }}
+  <!-- Token CSRF -->
+  {{ form.foto() }}
+  <!-- Campo de foto -->
+  {{ form.botao_confirmacao() }}
+  <!-- Botão de confirmação -->
+</form>
+{% endif %}
+<!-- Fim da verificação do formulário -->
 
-#para cada foto que o usuario tem exibe!
-<a href=""></a>
+<a href="{{ url_for('logout') }}">Sair</a>
+<!-- Link de logout -->
+
 {% for foto in usuario.fotos %}
+<!-- Loop de fotos -->
+<img
+  src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem)) }}"
+  alt="Imagem padrão"
+/>
+<!-- Caminho da imagem -->
+{% endfor %}
+<!-- Fim do loop de fotos -->
 
-<img src="" alt="" />
+<h2>Galeria de Fotos</h2>
+<!-- Título da galeria -->
 
-{%endfor %}
-
-<h2>titulo</h2>
 {% endblock %}
+<!-- Fim do conteúdo principal -->
