@@ -4,11 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block titulo %}Site | Fake Pinterest{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
     {% block body %}
     <h1>Site | Fake Pinterest</h1>
-    <a href="{{ url_for('perfil', usuario='valor_do_usuario') }}">Perfil</a>
-    {% endblock %}
+    <h2>Faça seu login para continuar!</h2>
+    {% block formulario %}
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div>{{ form.email(size=32) }}</div>
+      <div>
+        {{ form.senha.label }}<br />
+        {{ form.senha(size=32) }}
+      </div>
+      <div>{{ form.botao_confirmacao() }}</div>
+    </form>
+    {% endblock %} {% endblock %}
   </body>
 </html>
