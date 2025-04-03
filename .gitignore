@@ -13,3 +13,7 @@ venv/
 
 # Ignorar arquivos temporários
 *.tmp
+
+
+__pycache__/
+*.pyc
