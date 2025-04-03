@@ -20,3 +20,5 @@ class Foto(database.Model):
 
     def __repr__(self):
         return f'<Foto {self.imagem}>'
+    
+    
