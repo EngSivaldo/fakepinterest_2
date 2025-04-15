@@ -6,7 +6,7 @@ from fakepinterest.forms import FormLogin, FormCriarConta, FormFoto
 import os
 from werkzeug.utils import secure_filename
 
-# Página inicial
+# Página inicial => links
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     if current_user.is_authenticated:
@@ -18,6 +18,7 @@ def homepage():
             login_user(usuario)
             return redirect(url_for('perfil', id_usuario=usuario.id))
     return render_template('homepage.html', form=form_login)
+
 
 # Criar conta
 @app.route('/criar_conta', methods=['GET', 'POST'])
@@ -33,6 +34,7 @@ def criar_conta():
         login_user(usuario, remember=True)
         return redirect(url_for('perfil', id_usuario=usuario.id))
     return render_template('criar_conta.html', form=form_criar_conta)
+
 
 # Perfil do usuário
 @app.route('/perfil/<id_usuario>', methods=['GET', 'POST'])
@@ -52,6 +54,7 @@ def perfil(id_usuario):
     else:
         usuario = Usuario.query.get(int(id_usuario))
         return render_template('perfil.html', usuario=usuario, form=None)
+
 
 # Logout
 @app.route('/logout')
