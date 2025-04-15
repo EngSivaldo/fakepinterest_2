@@ -1,44 +1,31 @@
 {% extends "homepage.html" %}
-<!-- Extende o template base -->
 
+<!--titulo-->
 {% block titulo %}Perfil | {{ usuario.username }}{% endblock %}
-<!-- Título da página -->
 
+<!--body-->
 {% block body %}
-<!-- Início do conteúdo principal -->
 
+<!--navbar-->
+{% include "navbar.html" %}
+
+<!--traz as info do routes.py-->
 <h1>Perfil de {{ usuario.username }}</h1>
-<!-- Título do perfil -->
 
 {% if form %}
-<!-- Verifica se o formulário está presente -->
 <form method="POST" enctype="multipart/form-data">
-  <!-- Formulário de upload -->
   {{ form.csrf_token }}
-  <!-- Token CSRF -->
+  <!---->
   {{ form.foto() }}
-  <!-- Campo de foto -->
+  <!---->
   {{ form.botao_confirmacao() }}
-  <!-- Botão de confirmação -->
 </form>
-{% endif %}
-<!-- Fim da verificação do formulário -->
-
-<a href="{{ url_for('logout') }}">Sair</a>
-<!-- Link de logout -->
-
-{% for foto in usuario.fotos %}
-<!-- Loop de fotos -->
+{% endif %} {% for foto in usuario.fotos %}
 <img
   src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem)) }}"
   alt="Imagem padrão"
 />
-<!-- Caminho da imagem -->
 {% endfor %}
-<!-- Fim do loop de fotos -->
 
 <h2>Galeria de Fotos</h2>
-<!-- Título da galeria -->
-
 {% endblock %}
-<!-- Fim do conteúdo principal -->

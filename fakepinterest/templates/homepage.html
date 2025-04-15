@@ -2,44 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Define a codificação de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Configura a viewport para responsividade -->
     <title>{% block titulo %}Site | Fake Pinterest{% endblock %}</title>
-    <!-- Define o título da página -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
-    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
+  {% block body %}
   <body>
-    {% block body %}
-    <!-- Início do bloco de conteúdo principal -->
-    <h1>Site | Fake Pinterest</h1>
-    <!-- Título principal da página -->
+    <h1>Site | Fake Pinterest 2</h1>
     <h2>Faça seu login para continuar!</h2>
-    <!-- Subtítulo da página -->
+    {% if nome_usuario %}
+      <p>Bem-vindo, {{ nome_usuario }}!</p>
+    {% endif %}
     {% block formulario %}
-    <!-- Início do bloco de formulário -->
     <form method="POST">
-      <!-- Formulário de login -->
-      {{ form.hidden_tag() }}
-      <!-- Token CSRF para segurança -->
-      <div>{{ form.email(size=32) }}</div>
-      <!-- Campo de email -->
+      {{ form.csrf_token }}
+     <br />
+        {{ form.email(size=32) }}
+      </div>
       <div>
         {{ form.senha.label }}<br />
-        <!-- Rótulo do campo de senha -->
         {{ form.senha(size=32) }}
-        <!-- Campo de senha -->
       </div>
       <div>{{ form.botao_confirmacao() }}</div>
-      <!-- Botão de confirmação -->
     </form>
     {% endblock %}
-    <!-- Fim do bloco de formulário -->
-    {% endblock %}
-    <!-- Fim do bloco de conteúdo principal -->
   </body>
+  {% endblock %}
 </html>

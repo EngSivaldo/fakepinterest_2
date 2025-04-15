@@ -1,8 +1,15 @@
-from fakepinterest import database
-from flask_login import UserMixin
+from fakepinterest import database, login_manager
+from flask_login import UserMixin #CLASSE QUE GERENCIA LOGIN
 from datetime import datetime
 
-# Modelo de usuário
+
+#funcao que carrega um usuario
+@login_manager.user_loader
+def load_usuario(id_usuario):
+    return Usuario.query.get(int(id_usuario))
+
+
+# Modelo de usuário (TABELAS)
 class Usuario(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)  # ID único do usuário
     username = database.Column(database.String(80), nullable=False)  # Nome de usuário

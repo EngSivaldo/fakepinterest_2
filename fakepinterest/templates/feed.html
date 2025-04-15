@@ -1,0 +1,34 @@
+{% extends "homepage.html" %}
+<!-- Extende o template base "homepage.html" -->
+
+<!--body-->
+{% block body %}
+<!-- Inicia o bloco de conteúdo "body" -->
+
+<!--navbar-->
+{% include "navbar.html" %}
+<!-- Inclui o template "navbar.html" -->
+
+<h1>Feed Principal</h1>
+<!-- Título da página -->
+
+{% for foto in fotos %}
+<!-- Inicia um loop sobre a lista de fotos -->
+<a href="{{ url_for('perfil', id_usuario=foto.id_usuario) }}">
+  <!-- Link para o perfil do usuário -->
+  <img
+    src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem)) }}"
+    alt="Imagem padrão"
+    <!--
+    Texto
+    alternativo
+    para
+    a
+    imagem
+    --
+  />
+</a>
+{% endfor %}
+<!-- Termina o loop sobre a lista de fotos -->
+{% endblock %}
+<!-- Termina o bloco de conteúdo "body" -->
