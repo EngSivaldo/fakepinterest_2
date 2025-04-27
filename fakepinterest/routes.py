@@ -21,6 +21,7 @@ def homepage():
 
 
 
+
 # Criar conta
 @app.route('/criar_conta', methods=['GET', 'POST'])
 def criar_conta():

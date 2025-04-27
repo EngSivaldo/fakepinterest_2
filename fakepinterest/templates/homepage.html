@@ -9,6 +9,9 @@
   {% block body %}
   <body>
     <h1>Site | Fake Pinterest 2</h1>
+    <!-- Início do bloco de conteúdo principal -->
+    <h1>Site | Fake Pinterest 2</h1>
+    <!-- Título principal da página -->
     <h2>Faça seu login para continuar!</h2>
     {% if nome_usuario %}
       <p>Bem-vindo, {{ nome_usuario }}!</p>
@@ -26,6 +29,8 @@
       <div>{{ form.botao_confirmacao() }}</div>
     </form>
     {% endblock %}
+    <!-- Fim do bloco de formulário -->
+    <!-- Fim do bloco de conteúdo principal -->
   </body>
   {% endblock %}
 </html>
